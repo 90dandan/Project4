@@ -11,7 +11,10 @@ class AddVhs extends Component {
 
     render() {
         return (
-            <h1>Add Some Shit</h1>
+            <>
+            <h1>This is the add page component</h1>
+            <p>located src/components/AddVhs/AddVhs.jsx</p>
+            </>
         )
     }
 }
