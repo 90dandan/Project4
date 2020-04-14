@@ -57,13 +57,13 @@ class App extends Component {
               handleSignupOrLogin={this.handleSignupOrLogin}
             />
           }/>
-          <Route exact path='/vhs-secret' render={() => 
+          <Route exact path='/allvhs' render={() => 
             userAPI.getUser() ? 
               <VhssSecretPage />
             :
               <Redirect to='/login'/>
           }/>
-          <Route exact path='/' render={() =>
+          <Route exact path='/add' render={() =>
             <Vhs />
           }/>
         </Switch>
