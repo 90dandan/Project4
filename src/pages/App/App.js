@@ -1,19 +1,20 @@
 import React, { Component } from 'react';
 import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import SignupPage from '../SignupPage/SignupPage';
 import LoginPage from '../LoginPage/LoginPage';
 import VhssSecretPage from '../VhssSecretPage/VhssSecretPage'
 import * as vhsAPI from '../../services/vhs-api';
 import * as userAPI from '../../services/user-api';
-import Vhs from '../../components/Vhs/Vhs'
+import AddVhsPage from '../../pages/AddVhsPage/AddVhsPage'
 import NavBar from '../../components/NavBar/NavBar'
 
 class App extends Component {
   state = {
     // Initialize user if there's a token, otherwise null
     user: userAPI.getUser(),
-    vhss: null
+    vhss: []
   };
 
   /*--------------------------- Callback Methods ---------------------------*/
@@ -27,9 +28,17 @@ class App extends Component {
     this.setState({user: userAPI.getUser()});
   }
 
+  handleAddVhs = async newVhsData => {
+    const newVhs = await vhsAPI.create(newVhsData);
+    this.setState(state => ({
+      vhss: [...state.vhss, newVhs]
+    }), () => this.props.history.push('/'));
+  }
+
   /*-------------------------- Lifecycle Methods ---------------------------*/
 
   async componentDidMount() {
+    console.log('componentDidMount')
     const vhss = await vhsAPI.index();
     this.setState({ vhss });
   }
@@ -64,7 +73,9 @@ class App extends Component {
               <Redirect to='/login'/>
           }/>
           <Route exact path='/add' render={() =>
-            <Vhs />
+            <AddVhsPage 
+              handleAddVhs = {this.handleAddVhs}
+            />
           }/>
         </Switch>
       </div>
