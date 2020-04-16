@@ -11,8 +11,8 @@ module.exports = {
 
 async function index(req, res) {
   try{
-      const vhss = await Vhs.find({});
-      res.status(200).json(vhss);
+      const user = await User.findById(req.user._id);
+      res.status(200).json(user.vhss);
   }
   catch(err){
       res.status(500).json(err);
@@ -52,19 +52,18 @@ async function show(req, res) {
 }
 
 async function update(req, res) {
-  try{
-    const updateVhs = await Vhs.findByIdAndUpdate(req.params.id, req.body, {new: true});
-    res.status(200).json(updateVhs);
-  }
-  catch(err){
-    res.status(500).json(err);
-  }
+    const user = await User.findById(req.user._id);
+    const vhsToUpdate = user.vhss.splice(req.params.id, 1, req.body, {new: true});
+    user.save(function(err) {
+    res.status(200).json(user.vhss[req.params.idx])
+    })
 }
 
 async function deleteOne(req, res) {
   try{
-    const deleteVhs = await Vhs.findByIdAndDelete(req.params.id);
-    res.status(200).json(deleteVhs);
+    const user = await User.findById(req.user._id);
+    let deletedVhs = user.vhss.splice(req.params.idx, 1);
+    res.status(200).json(deletedVhs);
   }
   catch(err){
     res.status(500).json(err);

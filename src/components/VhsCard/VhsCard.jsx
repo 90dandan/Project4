@@ -1,7 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 
-function VhsCard({vhs, handleDeleteVhs}) {
+function VhsCard({vhs, handleDeleteVhs, user, idx}) {
   return (
     <div className='panel panel-default'>
       <div className='panel-heading'>
@@ -22,14 +22,15 @@ function VhsCard({vhs, handleDeleteVhs}) {
           className='btn btn-xs btn-warning'
           to={{
             pathname:'/edit',
-            //state={vhs}
+            state: {vhs},
+            idx: idx
           }}
         >
           EDIT
         </Link>
         <button
           className='btn btn-xs btn-danger margin-left-10'
-          onClick={() => handleDeleteVhs(vhs._id)}
+          onClick={() => handleDeleteVhs(vhs._id, idx)}
         >
           DELETE
         </button>  

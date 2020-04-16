@@ -12,8 +12,8 @@ router.get('/', checkAuth, vhssCtrl.index);
 router.use(require('../../config/auth'));
 router.post('/', checkAuth, vhssCtrl.create);
 router.get('/:id', checkAuth, vhssCtrl.show);
-router.put('/:id', checkAuth, vhssCtrl.update);
-router.delete('/:id', checkAuth , vhssCtrl.delete);
+router.put('/:idx', checkAuth, vhssCtrl.update);
+router.delete('/:idx', checkAuth , vhssCtrl.delete);
 
 /*----------------------------- Helper Functions ----------------------------*/
 

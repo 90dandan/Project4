@@ -4,11 +4,12 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import SignupPage from '../SignupPage/SignupPage';
 import LoginPage from '../LoginPage/LoginPage';
-import VhsListPage from '../VhsListPage/VhsListPage';
 import * as vhsAPI from '../../services/vhs-api';
 import * as userAPI from '../../services/user-api';
-import AddVhsPage from '../../pages/AddVhsPage/AddVhsPage'
-import NavBar from '../../components/NavBar/NavBar'
+import NavBar from '../../components/NavBar/NavBar';
+import AddVhsPage from '../../pages/AddVhsPage/AddVhsPage';
+import VhsListPage from '../VhsListPage/VhsListPage';
+import EditVhsPage from '../EditVhsPage/EditVhsPage';
 
 class App extends Component {
   state = {
@@ -32,8 +33,10 @@ class App extends Component {
     const newVhs = await vhsAPI.create(newVhsData);
     this.setState(state => ({
       vhss: [...state.vhss, newVhs]
-    }), () => this.props.history.push('/'));
+    }), () => this.props.history.push('/allvhs'));
   }
+
+  
 
   /*-------------------------- Lifecycle Methods ---------------------------*/
 

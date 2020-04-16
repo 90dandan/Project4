@@ -45,7 +45,7 @@ class AddVhsPage extends Component {
                         <input
                             className='form-control'
                             name='director'
-                            value={this.state.formData.breed}
+                            value={this.state.formData.director}
                             onChange={this.handleChange}
                         />
                     </div>
@@ -54,7 +54,7 @@ class AddVhsPage extends Component {
                         <input
                             className='form-control'
                             name='releaseYear'
-                            value={this.state.formData.age}
+                            value={this.state.formData.releaseYear}
                             onChange={this.handleChange}
                         />
                     </div>
@@ -62,7 +62,7 @@ class AddVhsPage extends Component {
                         type='submit'
                         className='btn'
                         disabled={this.state.invalidForm}
-                        onChange={this.handleSubmit}
+                        //onChange={this.handleSubmit}
                     >
                         ADD VHS
                     </button>

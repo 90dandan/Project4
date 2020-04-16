@@ -5,7 +5,8 @@ import { render } from '@testing-library/react';
 class EditVhsPage extends Component {
     state ={
         invalidForm: false,
-        formData: this.props.location.state.vhs
+        formData: this.props.location.state.vhs,
+        idx: this.props.location.idx
     }
     
 
@@ -13,8 +14,8 @@ class EditVhsPage extends Component {
 
     handleSubmit = e => {
         e.preventDefault();
-        this.props.handleUpdateVhs(this.state.formData)
-    }
+        this.props.handleUpdateVhs(this.state.formData, this.state.idx, this.props.location.state.vhs._id);
+    };
 
     handleChange = e => {
         const formData = {... this.state.formData, [e.target.name]: e.target.value};
