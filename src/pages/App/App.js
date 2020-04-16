@@ -36,7 +36,20 @@ class App extends Component {
     }), () => this.props.history.push('/allvhs'));
   }
 
-  
+
+
+  handleUpdateVhs = async (updatedVhsData, idx, id) => {
+    const updatedVhs = await vhsAPI.update(updatedVhsData, idx);
+    const newVhssArray = this.state.vhss.map(v =>
+      v._id === id ? updatedVhs : v
+    );
+    this.setState(
+      {vhss: newVhssArray},
+      () => this.props.history.push('/allvhs')
+    );
+  }
+
+
 
   /*-------------------------- Lifecycle Methods ---------------------------*/
 
@@ -68,15 +81,26 @@ class App extends Component {
               handleSignupOrLogin={this.handleSignupOrLogin}
             />
           }/>
-          <Route exact path='/allvhs' render={() => 
+          <Route exact path='/allvhs' render={({history, location}) => 
             userAPI.getUser() ? 
-              <VhsListPage />
+              <VhsListPage 
+                vhss={this.state.vhss}
+                user={this.state.user}
+                history={history}
+                location={location}
+              />
             :
               <Redirect to='/login'/>
           }/>
           <Route exact path='/add' render={() =>
             <AddVhsPage 
               handleAddVhs = {this.handleAddVhs}
+            />
+          }/>
+          <Route exact path='/edit' render={({history, location}) =>
+            <EditVhsPage 
+              handleUpdateVhs = {this.handleUpdateVhs}
+              location={location}
             />
           }/>
         </Switch>

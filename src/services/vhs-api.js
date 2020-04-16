@@ -4,12 +4,13 @@ const BASE_URL = '/api/vhss';
 
 export function index() {
   const options = {
-    method: 'GET',     //in vhs-api.js\\
+    method: 'GET',
     headers: {
       'Authorization': 'Bearer ' + tokenService.getToken()
     }      
   };
-  return fetch(BASE_URL, options).then(res => res.json());
+  return fetch(BASE_URL, options, {mode: 'cors'})
+  .then(res => res.json());
 }
 
 export function create(vhs) {
@@ -25,18 +26,20 @@ export function create(vhs) {
   .then(res => res.json());
 }
 
-export function update(vhs) {
-  return fetch(`${BASE_URL}/${vhs._id}`, {
+export function update(vhs, idx) {
+  return fetch(`${BASE_URL}/${idx}`, {
     method: 'PUT',
     headers: {'content-type': 'application/json',
-    'Authorization': 'Bearer ' + tokenService.getToken()
-  },
+    'Authorization': 'Bearer ' + tokenService.getToken()},
     body: JSON.stringify(vhs)
-  }).then(res => res.json());
+  }, {mode: 'cors'}).then(res => res.json());
 }
 
-export function deleteOne(id) {
-  return fetch(`${BASE_URL}/${id}`, {
-    method: 'DELETE'
-  }).then(res => res.json());
+export function deleteOne(idx) {
+  return fetch(`${BASE_URL}/${idx}`, {
+    method: 'DELETE',
+    headers: {
+      'Authorization': 'Bearer ' + tokenService.getToken()
+    }
+  }, {mode: 'cors'}).then(res => res.json());
 }
