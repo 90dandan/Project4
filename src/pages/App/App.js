@@ -4,7 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import SignupPage from '../SignupPage/SignupPage';
 import LoginPage from '../LoginPage/LoginPage';
-import VhssSecretPage from '../VhssSecretPage/VhssSecretPage'
+import VhsListPage from '../VhsListPage/VhsListPage';
 import * as vhsAPI from '../../services/vhs-api';
 import * as userAPI from '../../services/user-api';
 import AddVhsPage from '../../pages/AddVhsPage/AddVhsPage'
@@ -38,7 +38,6 @@ class App extends Component {
   /*-------------------------- Lifecycle Methods ---------------------------*/
 
   async componentDidMount() {
-    console.log('componentDidMount')
     const vhss = await vhsAPI.index();
     this.setState({ vhss });
   }
@@ -68,7 +67,7 @@ class App extends Component {
           }/>
           <Route exact path='/allvhs' render={() => 
             userAPI.getUser() ? 
-              <VhssSecretPage />
+              <VhsListPage />
             :
               <Redirect to='/login'/>
           }/>

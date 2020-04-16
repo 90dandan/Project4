@@ -19,7 +19,7 @@ const vhsSchema = new Schema({
   releaseYear: {
     type: Number,
   },
-  reviews: [reviewSchema],
+  //reviews: [reviewSchema],
 }, {
   timestamps: true
 });

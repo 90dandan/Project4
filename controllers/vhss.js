@@ -1,4 +1,5 @@
 var Vhs = require('../models/vhs');
+var User = require('../models/user');
 
 module.exports = {
   index,
@@ -18,15 +19,26 @@ async function index(req, res) {
   }
 }
 
+// async function create(req, res) {
+  // console.log('user: ', req.user)
+//   try {
+//     const vhs = await Vhs.create(req.body);
+//     res.status(201).json(vhs);
+//   }
+//   catch(err){
+//     res.status(500).json(err);
+//   }
+// }
+
+
 async function create(req, res) {
-  console.log('user: ', req.user)
-  try {
-    const vhs = await Vhs.create(req.body);
-    res.status(201).json(vhs);
-  }
-  catch(err){
-    res.status(500).json(err);
-  }
+  const vhs = await User.findById(req.user._id, function(err, user) {
+      console.log(req.body, user)
+      user.vhss.push(req.body);
+      user.save(function(err) {
+      res.status(201).json(user.vhss[user.vhss.length-1]);
+      });
+  });
 }
 
 async function show(req, res) {
