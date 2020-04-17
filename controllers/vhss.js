@@ -53,7 +53,7 @@ async function show(req, res) {
 
 async function update(req, res) {
     const user = await User.findById(req.user._id);
-    const vhsToUpdate = user.vhss.splice(req.params.id, 1, req.body, {new: true});
+    const vhsToUpdate = user.vhss.splice(req.params.idx, 1, req.body);
     user.save(function(err) {
     res.status(200).json(user.vhss[req.params.idx])
     })
