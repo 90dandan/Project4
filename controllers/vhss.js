@@ -62,8 +62,11 @@ async function update(req, res) {
 async function deleteOne(req, res) {
   try{
     const user = await User.findById(req.user._id);
-    let deletedVhs = user.vhss.splice(req.params.idx, 1);
-    res.status(200).json(deletedVhs);
+    let deletedVhs = user.vhss.splice(req.params.idx, 1)
+    user.save(function(err) {
+      if(err) return err
+      res.status(200).json(deletedVhs);
+    });
   }
   catch(err){
     res.status(500).json(err);

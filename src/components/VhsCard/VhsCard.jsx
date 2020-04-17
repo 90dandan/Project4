@@ -1,6 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 
+
 function VhsCard({vhs, handleDeleteVhs, user, idx}) {
   return (
     <div className='panel panel-default'>

@@ -6,7 +6,7 @@ class EditVhsPage extends Component {
     state = {
         invalidForm: false,
         formData: this.props.location.state.vhs,
-        idx: this.props.location.idx
+        idx: this.props.location.idx,
     }
 
     formRef = React.createRef();
@@ -63,7 +63,7 @@ class EditVhsPage extends Component {
                 >
                     Save VHS
                 </button>&nbsp;&nbsp;
-                <Link to='/'>CANCEL</Link>
+                <Link to='/allvhs'>CANCEL</Link>
             </form>
             </>
         )

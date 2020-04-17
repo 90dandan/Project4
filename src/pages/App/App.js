@@ -36,7 +36,12 @@ class App extends Component {
     }), () => this.props.history.push('/allvhs'));
   }
 
-
+  handleDeleteVhs = async (id, idx) => {
+    await vhsAPI.deleteOne(idx);
+    this.setState(state => ({
+      vhss: state.vhss.filter(v => v._id !== id)
+    }), () => this.props.history.push('/allvhs'));
+  }
 
   handleUpdateVhs = async (updatedVhsData, idx, id) => {
     const updatedVhs = await vhsAPI.update(updatedVhsData, idx);
@@ -101,6 +106,7 @@ class App extends Component {
             <EditVhsPage 
               handleUpdateVhs = {this.handleUpdateVhs}
               location={location}
+              history={history}
             />
           }/>
         </Switch>
