@@ -1,13 +1,18 @@
 .NavBar {
   display: flex;
-  justify-content: center;
+  font-size: 2vmin;
+  align-items: center;
+  justify-content: space-between;
   margin: 0 0 20px;
+  background-color: rgb(70, 204, 204);
+  
 }
 
 .NavBar-link {
   margin: 0 10px;
+  color: rgb(179, 48, 98);
 }
 
 .NavBar-welcome {
-  color: grey;
+  color: rgb(168, 53, 53);
 }

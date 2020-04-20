@@ -68,7 +68,8 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <h1>Welcome to Vhs</h1>
+        <h1>Welcome to Stash Box</h1>
+        <h3>A place to store and view your movies on your favorite format: VHS</h3>
         <NavBar
           user={this.state.user}
           handleLogout={this.handleLogout}

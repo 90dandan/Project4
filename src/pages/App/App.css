@@ -1,7 +1,8 @@
 .App {
-  display: flex;
-  flex-flow: column nowrap;
+  display: grid;
+  grid-template-rows: 7vmin auto;
   justify-content: center;
   align-items: center;
   margin-bottom: 50px;
+  background-color:rgb(247, 65, 135);
 }
